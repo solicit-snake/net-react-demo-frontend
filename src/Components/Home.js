@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 
-export class Home extends Component{
-
-
-    render(){
-        return(
-            <div className="mt-5 d-flex justify-content-left">
-                This is a home page. WWWWWWWWWWWWWW
+export default function Home(){
+    return(
+        <div className="Home">
+            <div className="lander">
+                <h1>Your profile: </h1>
+                <p className="text-muted">This is where the login screen will be </p>
             </div>
-        )
-    }
+        </div>
+    )
 }
