@@ -61,7 +61,7 @@ const NewAddress = (props) => {
     }
     
     return(
-        <div>
+        <div className="NewAddressForm">
             <h3 className="newAddressTitle">New address:</h3>
                 <Form onSubmit = {handleSubmit}>
                     <Row>

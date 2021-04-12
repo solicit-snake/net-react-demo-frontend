@@ -34,15 +34,39 @@
 .UpdateUser > h3{
 }
 
-.UpdateUser, .AddressViewContainer {
+.UpdateUser, .NewAddressForm, .addressDisplayFormContainer{
   margin: 0 auto;
-  max-width: 450px;
+  max-width: 500px;
   margin-top: 40px;
 }
 
-.newAddressTitle{
+.addressDisplayForm{
+  background-color: wheat;
+  padding: 5px;
+  border-radius: 5px;margin-bottom:5px;
+  position:relative;
 }
 
+.UpdateUser > form{
+  background-color: #e0eaff;
+  padding: 2px;
+  border-radius: 2px;
+}
+
+.NewAddressForm > form{
+  background-color: #e4ffdf;
+  padding:2px;
+}
+
+.singleAddressButtons{
+  margin-right:5px;
+}
+
+.addressDisplayForm .successMessage{
+  font-size:14px;
+  right: 10px;
+  bottom: 10px;
+}
 
 
 /* ------------------------------

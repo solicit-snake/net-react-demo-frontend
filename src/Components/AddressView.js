@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import NewAddress from './NewAddress';
+import SingleAddress from './SingleAddress';
 
 export default function AddressView() {
     const loggedInUserId = localStorage.getItem("loggedInUserId");
@@ -51,13 +52,24 @@ export default function AddressView() {
     
     return(
         loadedAddresses &&(
-            <div className="AddressViewContainer">address view block
+            <div className="AddressViewContainer">
                 {/* <SingleAddress value ="yeet"/>  */}
+                <div className="addressDisplayFormContainer">
+                    <h3> Your Existing Addresses</h3>
+                    {console.log('logging address array le')}
+                    {console.log(userAddressArray.length)}
+                    {console.log(userAddressArray.typeof)}
+                    {userAddressArray.length >= 0 && !userAddressArray.includes("Rows Affected") ? (userAddressArray.map(function(value, index) {
+                        return (
+                            <SingleAddress 
+                            key={index}    
+                            refreshUsersAddresses={getUsersAddresses}
+                                addressData = {userAddressArray[index]}/>
+                        )
+                    })) : ( <p>0 - submitted addresses? :(</p>)}
+                    
+                </div>
                 
-                {userAddressArray.map(function(value, index) {
-                    return <h5 key={index}>wow! {userAddressArray[index].Street}</h5>
-                })}
-
                 <NewAddress refreshUsersAddresses={getUsersAddresses}/>
             </div>
         )
