@@ -32,9 +32,7 @@ export default function Login(){
                     setErrorMessage("Details Incorrect");
                 } else{ 
                     //Email exists
-                    console.log(res.data);
                     //If password is correct
-                    //If password.bcrypt == res.data.pw
                     if(bcrypt.compareSync(password, res.data[0].Password)){
                         console.log('RIGHT PASSWORD!');
                         setErrorMessage("");
@@ -44,7 +42,7 @@ export default function Login(){
                         console.log(Cookies2.get('loggedIn'));
 
                         userHasAuthenticated(true);
-                        localStorage.setItem('loggedInUser', JSON.stringify(res.data[0]));
+                        localStorage.setItem('loggedInUserId',  res.data[0].UserId);
                         history.push('/')
                     }
                     //Password was incorrect
@@ -80,7 +78,7 @@ export default function Login(){
                         onChange={(e) => setPassword(e.target.value)} 
                     />
                  </Form.Group>
-                 <div class='errorMessage'>{errorMessage}</div>
+                 <div className='errorMessage'>{errorMessage}</div>
                  <Button block size="lg" type="submit" disabled={!validateForm()}>
                      Login
                  </Button>

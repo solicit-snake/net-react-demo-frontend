@@ -1,10 +1,13 @@
 import React, {Component, useEffect, useState} from 'react';
 import { useAppContext } from "../libs/contextLib";
 import {useHistory } from "react-router-dom";
+import UpdateUser from './UpdateUser';
+import AddressView from './AddressView';
 
 
 export default function UserInfo() {
 
+    
     const {isAuthenticated} = useAppContext();
     const history = useHistory(); 
 
@@ -20,8 +23,9 @@ export default function UserInfo() {
     }
     
     return(
-        <div className="mt-5 d-flex justify-content-left">
-            This is the user info comp
+        <div className="userInfoContainer">
+            <UpdateUser/>
+            <AddressView/>
         </div>
     )
 }

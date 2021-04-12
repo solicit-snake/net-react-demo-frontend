@@ -21,7 +21,7 @@ function App() {
     userHasAuthenticated(false);
     Cookies2.remove('loggedIn');
     history.push('/login');
-    localStorage.removeItem('loggedInUser');
+    localStorage.removeItem('loggedInUserId');
   }
 
   useEffect(() =>{

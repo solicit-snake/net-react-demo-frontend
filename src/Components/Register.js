@@ -40,10 +40,9 @@ export default function Register(){
                     axios.get(apiBaseUrl+'user/get-by-email/'+email).then( res =>{
                         var in15Mins = 1/96;
                         Cookies2.set('loggedIn', 'true', {expires: in15Mins})
-                        console.log(Cookies2.get('loggedIn'));
                         
                         userHasAuthenticated(true);
-                        localStorage.setItem('loggedInUser', JSON.stringify(res.data[0]));
+                        localStorage.setItem('loggedInUserId', res.data[0].UserId);
                         history.push('/');
                     });
 
@@ -101,7 +100,7 @@ export default function Register(){
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </Form.Group>
-                <div class='errorMessage'>{errorMessage}</div>
+                <div className='errorMessage'>{errorMessage}</div>
                 <Button block size = "lg" type="submit" disabled={!validateForm()}>
                     Register
                 </Button>

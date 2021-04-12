@@ -24,12 +24,33 @@
   padding: 5px 0px;
 }
 
+.successMessage{
+  color: rgb(53 143 53 / 70%);
+  font-style:italic;
+  position: absolute;
+  font-weight: 600;
+}
+
+.UpdateUser > h3{
+}
+
+.UpdateUser, .AddressViewContainer {
+  margin: 0 auto;
+  max-width: 450px;
+  margin-top: 40px;
+}
+
+.newAddressTitle{
+}
+
+
+
 /* ------------------------------
 # Login Page
 ------------------------------ */
 @media all and (min-width: 480px) {
-  .Login {
-    padding: 60px 0;
+  .Login{
+    padding: 60px 0 0 0;
   }
 
   .Login form {
@@ -37,6 +58,7 @@
     max-width: 320px;
   }
 }
+
 
 /* ------------------------------
 # Home Page
@@ -50,4 +72,20 @@
 .Home .lander h1 {
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
+}
+
+/* ------------------------------
+# User Info Page
+------------------------------ */
+.UpdateUser{
+  @media all and (min-width: 480px) {
+    .Login {
+      padding: 60px 0;
+    }
+  
+    .UpdateUser form {
+      margin: 0 auto;
+      max-width: 320px;
+    }
+  }
 }
