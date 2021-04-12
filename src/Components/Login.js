@@ -5,13 +5,16 @@ import axios from 'axios';
 import Cookies2 from 'js-cookie';
 import { useAppContext } from "../libs/contextLib";
 import {useHistory } from "react-router-dom";
+import bcrypt from 'bcryptjs';
 
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const {userHasAuthenticated} = useAppContext(); 
     const history = useHistory();
+    const apiBaseUrl = process.env.REACT_APP_DEMO_API;
     
     // const apiToucher = new ApiToucher(process.env.NET_REACT_DEMO_API);
 
@@ -23,34 +26,32 @@ export default function Login(){
         event.preventDefault();
 
         try{
-            axios.get(process.env.REACT_APP_DEMO_API+'user/get-by-email/'+email).then( res =>{
+            axios.get(apiBaseUrl+'user/get-by-email/'+email).then( res =>{
                 //If the email doesn't exist in DB:
                 if(typeof res.data === 'string'){
-                    
+                    setErrorMessage("Details Incorrect");
                 } else{ 
                     //Email exists
                     console.log(res.data);
                     //If password is correct
                     //If password.bcrypt == res.data.pw
-                    if(password == res.data[0].Password){
+                    if(bcrypt.compareSync(password, res.data[0].Password)){
                         console.log('RIGHT PASSWORD!');
+                        setErrorMessage("");
                         //Save the user ID item to local storage, as well as a cookie that epires in 15 mins.
-                        //TODO: need to move the user forward on sucessful login, and also show a message on wrong password/email!
                         var in15Mins = 1/96;
                         Cookies2.set('loggedIn', 'true', {expires: in15Mins})
                         console.log(Cookies2.get('loggedIn'));
 
                         userHasAuthenticated(true);
-                        localStorage.setItem('loggedInUserId', res.data[0].UserId);
+                        localStorage.setItem('loggedInUser', JSON.stringify(res.data[0]));
                         history.push('/')
                     }
                     //Password was incorrect
                     else{
+                        setErrorMessage("Details Incorrect");
                         console.log("WRONG PASSWORD!");
                     }
-                    
-                    console.log('log session data');
-                    console.log(localStorage.getItem('loggedInUserId'));
                 }
                 
             })
@@ -79,6 +80,7 @@ export default function Login(){
                         onChange={(e) => setPassword(e.target.value)} 
                     />
                  </Form.Group>
+                 <div class='errorMessage'>{errorMessage}</div>
                  <Button block size="lg" type="submit" disabled={!validateForm()}>
                      Login
                  </Button>

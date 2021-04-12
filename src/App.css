@@ -18,6 +18,12 @@
   padding-top: 100px;
 }
 
+.errorMessage{
+  color: rgb(255 0 0 / 70%);
+  font-style:italic;
+  padding: 5px 0px;
+}
+
 /* ------------------------------
 # Login Page
 ------------------------------ */

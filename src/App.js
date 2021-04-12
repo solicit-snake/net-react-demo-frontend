@@ -21,7 +21,7 @@ function App() {
     userHasAuthenticated(false);
     Cookies2.remove('loggedIn');
     history.push('/login');
-    localStorage.removeItem('loggedInUserId');
+    localStorage.removeItem('loggedInUser');
   }
 
   useEffect(() =>{
@@ -41,7 +41,7 @@ function App() {
       <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
         
         {/* link to dif thing in this button depending on if they are logged in or not */}
-        <LinkContainer to={isAuthenticated ? ("/login") : ("/login")}>
+        <LinkContainer to={isAuthenticated ? ("/") : ("/login")}>
           <Navbar.Brand className="font-weight-bold text-muted">
             Kyles .net and react demo
           </Navbar.Brand>
@@ -54,8 +54,8 @@ function App() {
               <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             ) : (
               <>
-              <LinkContainer to="/signup"> 
-                <Nav.Link>Signup</Nav.Link>
+              <LinkContainer to="/register"> 
+                <Nav.Link>Register</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/login">
                 <Nav.Link>Login</Nav.Link>

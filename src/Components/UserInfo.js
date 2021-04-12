@@ -13,8 +13,7 @@ export default function UserInfo() {
         }, []);
 
     function onLoad(){
-        console.log('onloading')
-        console.log(isAuthenticated);
+        //If not authed -push to login
         if(!isAuthenticated){
             history.push('/login');
         }
